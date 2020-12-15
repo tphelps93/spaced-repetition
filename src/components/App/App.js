@@ -9,12 +9,16 @@ import DashboardRoute from '../../routes/DashboardRoute/DashboardRoute';
 import LearningRoute from '../../routes/LearningRoute/LearningRoute';
 import NotFoundRoute from '../../routes/NotFoundRoute/NotFoundRoute';
 import './App.css';
-import DataContext from '../../DataContext';
-import { fetchLanguage } from '../../services/api-service';
+import DataContext from '../../contexts/DataContext';
+import { fetchLanguage, fetchWords } from '../../services/api-service';
 
 export default class App extends Component {
   state = {
     language: [],
+    words: [],
+    totalScore: 0,
+    incorrect: 0,
+    correct: 0,
     hasError: false,
   };
 
@@ -23,15 +27,23 @@ export default class App extends Component {
     return { hasError: true };
   }
 
-  componentDidMount() {
-    let promises = [fetchLanguage()];
 
+  // hit head first time only
+  // on guesses use 'guess' resp to update state (incorrect, correct)
+  // after posting 'guess' display incorrect and correct they got
+  componentDidMount() {
+    let promises = [fetchLanguage(), fetchWords()];
     Promise.all(promises)
-      .then(values =>
+      .then(values => {
+        console.log(values);
         this.setState({
           language: values[0],
-        })
-      )
+          words: values[1].nextWord,
+          // totalScore: values[0].nextWord.total_score,
+          // incorrect: values[1].nextWord.incorrect_count,
+          // correct: values[1].nextWord.correct_count,
+        });
+      })
       .catch(hasError => {
         this.setState({
           hasError,
@@ -42,8 +54,14 @@ export default class App extends Component {
   render() {
     const contextValue = {
       language: this.state.language,
+      words: this.state.words,
+      totalScore: this.state.totalScore,
+      incorrect: this.state.incorrect,
+      correct: this.state.correct,
       hasError: this.state.hasError,
     };
+
+    console.log(this.state.words);
     return (
       <DataContext.Provider value={contextValue}>
         <div className='App'>

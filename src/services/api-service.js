@@ -15,3 +15,18 @@ export const fetchLanguage = () => {
     return res.json();
   });
 };
+
+export const fetchWords = () => {
+  return fetch(`${config.API_ENDPOINT}/language/head`, {
+    method: 'GET',
+    headers: {
+      'content-type': 'application/json',
+      authorization: `bearer ${TokenService.getAuthToken()}`,
+    },
+  }).then(res => {
+    if (!res.ok) {
+      return Promise.reject(res.statusText);
+    }
+    return res.json();
+  });
+};

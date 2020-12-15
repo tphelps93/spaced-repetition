@@ -15,6 +15,7 @@
 */
 describe(`User story: Answer feedback`, function() {
   beforeEach(() => {
+    // intercepts requests user tries to make
     cy.server()
       .route({
         method: 'GET',
