@@ -9,39 +9,25 @@ import DashboardRoute from '../../routes/DashboardRoute/DashboardRoute';
 import LearningRoute from '../../routes/LearningRoute/LearningRoute';
 import NotFoundRoute from '../../routes/NotFoundRoute/NotFoundRoute';
 import './App.css';
-import DataContext from '../../contexts/DataContext';
+import { DataProvider } from '../../contexts/DataContext';
 import { fetchLanguage, fetchWords } from '../../services/api-service';
 
 export default class App extends Component {
-  state = {
-    language: [],
-    words: [],
-    totalScore: 0,
-    incorrect: 0,
-    correct: 0,
-    hasError: false,
-  };
+  state = { hasError: false };
 
   static getDerivedStateFromError(error) {
     console.error(error);
     return { hasError: true };
   }
 
-
-  // hit head first time only
-  // on guesses use 'guess' resp to update state (incorrect, correct)
-  // after posting 'guess' display incorrect and correct they got
   componentDidMount() {
     let promises = [fetchLanguage(), fetchWords()];
     Promise.all(promises)
       .then(values => {
-        console.log(values);
         this.setState({
-          language: values[0],
-          words: values[1].nextWord,
-          // totalScore: values[0].nextWord.total_score,
-          // incorrect: values[1].nextWord.incorrect_count,
-          // correct: values[1].nextWord.correct_count,
+          language: values[0].language,
+          words: values[0].words,
+          head: values[1],
         });
       })
       .catch(hasError => {
@@ -52,22 +38,12 @@ export default class App extends Component {
   }
 
   render() {
-    const contextValue = {
-      language: this.state.language,
-      words: this.state.words,
-      totalScore: this.state.totalScore,
-      incorrect: this.state.incorrect,
-      correct: this.state.correct,
-      hasError: this.state.hasError,
-    };
-
-    console.log(this.state.words);
     return (
-      <DataContext.Provider value={contextValue}>
+      <DataProvider>
         <div className='App'>
           <Header />
           <main>
-            {contextValue.hasError && <p>There was an error! Oh no!</p>}
+            {this.state.hasError && <p>There was an error! Oh no!</p>}
             <Switch>
               <PrivateRoute exact path={'/'} component={DashboardRoute} />
               <PrivateRoute path={'/learn'} component={LearningRoute} />
@@ -80,7 +56,7 @@ export default class App extends Component {
             </Switch>
           </main>
         </div>
-      </DataContext.Provider>
+      </DataProvider>
     );
   }
 }

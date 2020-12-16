@@ -1,0 +1,13 @@
+.next-word {
+    border: 2px solid black;
+    height: 100%;
+    width: 30%;
+    margin: 20px;
+    align-self: center;
+    background-color: silver;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+}

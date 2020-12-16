@@ -1,46 +1,36 @@
 import React, { Component } from 'react';
 import DataContext from '../../contexts/DataContext';
 import './DashboardRoute.css';
+import { fetchLanguage } from '../../services/api-service';
 
 class DashboardRoute extends Component {
-
   static contextType = DataContext;
+
+  componentDidMount() {
+    fetchLanguage().then(response => {
+      this.context.setLanguage(response.language);
+      this.context.setWords(response.words);
+    });
+  }
   render() {
-    const { language, words, totalScore } = this.context;
-
-
-
-    let langName;
-    if (language) {
-      langName = language.name;
-    }
-
     let wordList;
-    if (words) {
-      wordList = words.map(word => {
-        return (
-          <div key={word.id} className='word-list'>
-            <ul>
-              <li>
-                <h4>{word.original}</h4> ×: {word.incorrect_count} ✓:{' '}
-                {word.correct_count}
-              </li>
-            </ul>
-          </div>
-        );
-      });
-    }
+    wordList = this.context.words.map(word => {
+      return (
+        <ul key={word.id} className='list'>
+          <li>{word.original} ✅: {word.correct_count} ❌: {word.incorrect_count}</li>
+        </ul>
+      );
+    });
     return (
       <section className='dashboard'>
-        <h2>{langName}</h2>
+        <h2> {this.context.language.name} </h2>
         <div className='stats'>
-          <h2>Total Score: {totalScore} </h2>
-          <p>Correct: 0 </p>
-          <p>Incorrect: 0</p>
+          <h2>Total Score: {this.context.language.total_score} </h2>
+
         </div>
         <a href='/learn'>Start Practicing</a>
         <h3> Words To Practice </h3>
-        {wordList}
+        <div className='word-list'>{wordList}</div>
       </section>
     );
   }
