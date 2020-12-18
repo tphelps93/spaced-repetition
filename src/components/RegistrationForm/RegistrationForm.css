@@ -1,15 +1,28 @@
 .registration {
-    margin: 0 auto;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    width: 50%;
-    padding: 20px;
-    text-align: right;
 }
 
-form div {
-    padding: 5px;
+.registration Label {
+}
+
+.reg-inputs {
+    display: flex;
+    flex-direction: column;
+}
+
+.reg-inputs div{
+    border: none;
+    width: 30%;
+    align-self: center;
+}
+
+.reg-inputs Input {
+    margin-left: -30%;
+}
+
+.reg-inputs button {
+    height: 5vh;
 }
 
 footer {
@@ -17,6 +30,6 @@ footer {
     flex-direction: column;
 }
 
-footer {
-    padding: 50px;
+@media all and (min-width: 500px) {
+
 }

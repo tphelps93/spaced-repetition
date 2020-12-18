@@ -17,7 +17,7 @@ class DashboardRoute extends Component {
     wordList = this.context.words.map(word => {
       return (
         <ul key={word.id} className='list'>
-          <li>{word.original} ✅: {word.correct_count} ❌: {word.incorrect_count}</li>
+          <li><p>{word.original}</p> ✅: {word.correct_count} ❌: {word.incorrect_count}</li>
         </ul>
       );
     });

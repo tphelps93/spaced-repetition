@@ -38,12 +38,12 @@ export default class App extends Component {
   }
 
   render() {
+    const { hasError } = this.state;
     return (
       <DataProvider>
         <div className='App'>
           <Header />
           <main>
-            {this.state.hasError && <p>There was an error! Oh no!</p>}
             <Switch>
               <PrivateRoute exact path={'/'} component={DashboardRoute} />
               <PrivateRoute path={'/learn'} component={LearningRoute} />

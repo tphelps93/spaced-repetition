@@ -31,15 +31,9 @@ describe(`User story: Presented with word`, function () {
       cy.get('main').within($main => {
         cy.get('h2')
           .should('have.text', 'Translate the word:')
-          // .siblings('span')
-          // .should('have.text', languageHeadFixture.nextWord);
       });
       cy.get('p')
         .eq(0)
-        // .should(
-        //   'have.text',
-        //   `Your total score is: ${languageHeadFixture.totalScore}`
-        // );
     });
   });
 
@@ -63,14 +57,6 @@ describe(`User story: Presented with word`, function () {
     cy.fixture('language-head.json').then(languageHeadFixture => {
       cy.get('main').within($main => {
         cy.root()
-          // .should(
-          //   'contain',
-          //   `Correct Guesses: ${languageHeadFixture.wordCorrectCount}`
-          // )
-          // .and(
-          //   'contain',
-          //   `Incorrect Guesses: ${languageHeadFixture.wordIncorrectCount}`
-          // );
       });
     });
   });

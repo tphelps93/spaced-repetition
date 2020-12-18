@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '../Button/Button';
 import LearningContext from '../../contexts/LearningContext';
-// import './Feedback.css';
+import './Feedback.css';
 
 class Feedback extends React.Component {
   static contextType = LearningContext;
@@ -20,7 +20,7 @@ class Feedback extends React.Component {
 
   render() {
     return (
-      <section id='feedback'>
+      <section className='feedback'>
         <div className='DisplayFeedback'>
           {this.renderMessage()}
           <p>
@@ -28,7 +28,7 @@ class Feedback extends React.Component {
             <span en='fr'>{this.context.prevWord}</span> was{' '}
             {this.context.answer} and you chose {this.context.guess}!
           </p>
-          <Button onClick={this.handleClick}> Next Word </Button>
+          <button onClick={this.handleClick}> Next Word </button>
         </div>
       </section>
     );

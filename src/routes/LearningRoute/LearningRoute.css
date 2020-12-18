@@ -1,13 +1,13 @@
-.next-word {
-    border: 2px solid black;
-    height: 100%;
-    width: 30%;
-    margin: 20px;
-    align-self: center;
-    background-color: silver;
+.translate-container span {
+    font-size: 30px;
+    border-bottom: 3px solid black;
 }
 
-section {
-    display: flex;
-    flex-direction: column;
+label {
+    margin: 5px;
+}
+
+#learn-guess-input {
+    width: 30%;
+    align-self: center;
 }

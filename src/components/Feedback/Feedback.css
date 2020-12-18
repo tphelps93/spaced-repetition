@@ -1,0 +1,9 @@
+.feedback button {
+  width: 20%;
+  height: 5vh;
+  margin: 5px;
+  border: none;
+  background-color: #b1a296;
+  box-shadow: 0px 0px 5px 2px #17252a;
+  align-self: center;
+}

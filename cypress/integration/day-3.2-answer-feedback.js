@@ -89,12 +89,12 @@ describe(`User story: Answer feedback`, function() {
           cy.get('.DisplayScore p')
             .should(
               'have.text',
-              `Your total score is: ${incorrectFixture.totalScore}`,
+              `Total Score: ${incorrectFixture.totalScore}`,
             )
           cy.get('h2')
             .should(
               'have.text',
-              `Good try, but not quite right :(`,
+              ` Incorrect `,
             )
           cy.get('.DisplayFeedback p')
             .should(
@@ -104,7 +104,7 @@ describe(`User story: Answer feedback`, function() {
           cy.get('button')
             .should(
               'have.text',
-              `Try another word!`,
+              ` Next Word `,
             )
         })
       })
@@ -143,12 +143,12 @@ describe(`User story: Answer feedback`, function() {
           cy.get('.DisplayScore p')
             .should(
               'have.text',
-              `Your total score is: ${incorrectFixture.totalScore}`,
+              `Total Score: ${incorrectFixture.totalScore}`,
             )
           cy.get('h2')
             .should(
               'have.text',
-              `You were correct! :D`,
+              ` Good Job!`,
             )
           cy.get('.DisplayFeedback p')
             .should(
@@ -158,7 +158,7 @@ describe(`User story: Answer feedback`, function() {
           cy.get('button')
             .should(
               'have.text',
-              `Try another word!`,
+              ` Next Word `,
             )
         })
       })

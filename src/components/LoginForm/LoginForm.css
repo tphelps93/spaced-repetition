@@ -1,0 +1,33 @@
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form button {
+  width: 30%;
+  height: 5vh;
+  margin: 5px;
+  border: none;
+  background-color: #b1a296;
+  box-shadow: 0px 0px 5px 2px #17252a;
+  align-self: center;
+}
+
+form button:hover {
+  background-color: #7395ae;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+}
+
+#login-username-input {
+  margin-right: 1.5%;
+}
+
+Input {
+  height: 4vh;
+  border: none;
+  margin: 0.5%;
+}
