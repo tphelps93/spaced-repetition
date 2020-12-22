@@ -43,13 +43,12 @@ class LearningRoute extends Component {
     return (
       <section id='learning-container'>
         {!this.context.isResultDisplayed ? (
-          <section role='form'>
+          <section>
             <div className='translate-container'>
               <h2 className='instructions-header'>Translate the word:</h2>
               <span>{this.context.nextWord}</span>
             </div>
             <form
-              htmlFor='guessForm'
               id='submit-form'
               onSubmit={e => {
                 e.preventDefault();

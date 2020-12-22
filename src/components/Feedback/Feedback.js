@@ -1,5 +1,4 @@
 import React from 'react';
-import Button from '../Button/Button';
 import LearningContext from '../../contexts/LearningContext';
 import './Feedback.css';
 
