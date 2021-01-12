@@ -17,7 +17,6 @@ const LearningContext = React.createContext({
   ...initialState,
   setError: () => {},
   clearError: () => {},
-  setPrevWord: () => {},
   setNextWord: () => {},
   setTotalScore: () => {},
   setWordCorrectCount: () => {},
